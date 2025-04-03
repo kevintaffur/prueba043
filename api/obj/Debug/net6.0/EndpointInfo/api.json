@@ -192,7 +192,7 @@
         }
       }
     },
-    "/api/v1/productos": {
+    "/api/posts": {
       "get": {
         "tags": [
           "Publicaciones"
@@ -233,7 +233,7 @@
         }
       }
     },
-    "/api/v1/productos/{id}": {
+    "/api/posts/{id}": {
       "put": {
         "tags": [
           "Publicaciones"

@@ -11,7 +11,7 @@
 
         public Comentario(string contenido, DateTime fecha, int usuarioId, int publicacionId)
         {
-            contador++;
+            Id = contador++;
             Contenido = contenido;
             Fecha = fecha;
             UsuarioId = usuarioId;

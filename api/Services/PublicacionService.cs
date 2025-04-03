@@ -1,5 +1,6 @@
 ﻿using api.Models;
 using api.Repositories;
+using Microsoft.IdentityModel.Tokens;
 
 namespace api.Services
 {
@@ -7,11 +8,13 @@ namespace api.Services
     {
         private readonly PublicacionesRepository Repo;
         private readonly IUsuarioService UsuarioService;
+        private readonly ComentarioRepository comentarioRepository;
 
-        public PublicacionService(PublicacionesRepository repo, IUsuarioService usuarioService)
+        public PublicacionService(PublicacionesRepository repo, IUsuarioService usuarioService, ComentarioRepository comentarioService)
         {
             Repo = repo;
             UsuarioService = usuarioService;
+            comentarioRepository = comentarioService;
         }
 
         public async Task<Publicacion> Crear(Publicacion p)
@@ -57,6 +60,13 @@ namespace api.Services
 
         public async Task Eliminar(int id)
         {
+            List<Comentario> comentarios = await comentarioRepository.ObtenerPorPublicacionId(id);
+
+            if (!comentarios.IsNullOrEmpty())
+            {
+                throw new Exception("Publicación tiene comentarios asociados.");
+            }
+
             await Repo.Eliminar(id);
         }
     }

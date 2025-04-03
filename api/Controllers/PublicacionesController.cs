@@ -48,7 +48,7 @@ namespace api.Controllers
                 {
                     Status = 201,
                     Message = "Publicacion creada satisfactoriamente",
-                    Content = p 
+                    Content = p
                 });
             }
             catch
@@ -137,6 +137,8 @@ namespace api.Controllers
             {
                 Publicacion p = await Service.ObtenerPorId(id);
 
+
+
                 if (p == null)
                 {
                     return NotFound(new Response
@@ -154,14 +156,16 @@ namespace api.Controllers
                     Content = p
                 });
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound(new Response
                 {
-                    Status = 404,
-                    Message = "Publicacion no existe.",
-                    Content = null
-                });
+                    return BadRequest(new Response
+                    {
+                        Status = 400,
+                        Message = ex.Message,
+                        Content = null
+                    });
+                }
             }
         }
     }

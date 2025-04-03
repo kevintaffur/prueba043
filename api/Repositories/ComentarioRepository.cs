@@ -42,6 +42,11 @@ namespace api.Repositories
             return c;
         }
 
+        public async Task<List<Comentario>> ObtenerPorPublicacionId(int id)
+        {
+            return _list.Where(c => c.PublicacionId == id).ToList();
+        }
+
         public async Task Eliminar(int id)
         {
             Comentario cExistente = await ObtenerPorId(id);

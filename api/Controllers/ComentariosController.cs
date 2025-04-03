@@ -48,7 +48,7 @@ namespace api.Controllers
                 {
                     Status = 201,
                     Message = "Comentario creado satisfactoriamente",
-                    Content = await Service.Crear(comentario)
+                    Content = p
                 });
             }
             catch
