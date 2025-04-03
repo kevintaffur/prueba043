@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("api/v1/productos")]
+    [Route("api/posts")]
     public class PublicacionesController : ControllerBase
     {
         private PublicacionService Service;
